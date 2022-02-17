@@ -459,6 +459,10 @@ public class FeriaEmpresarial {
         String nombreEmpresa = P.darNombreEmpresa();
         for (Empresa empresa: empresas) {
             if (empresa.darNombre().equals(nombreEmpresa)) {
+                if(empresa.darNumeroPersonasAsistentes()>expositoresPuesto){
+                    expositoresPuesto = empresa.darNumeroPersonasAsistentes();
+                    zona = P.darZona();
+                }
                 expositores += empresa.darNumeroPersonasAsistentes();
                 return expositores;
             }
@@ -475,7 +479,7 @@ public class FeriaEmpresarial {
         darExpositoresPuesto(NUM_PUESTOS_SUR,zona);
         darExpositoresPuesto(NUM_PUESTOS_OCCIDENTE,zona);
 
-        return "zona";
+        return "La zona con mas expositores es " + zona;
     }
 
     /**
