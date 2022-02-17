@@ -470,8 +470,12 @@ public class FeriaEmpresarial {
      * @return respuesta1
      */
     public String metodo1() {
+        darExpositoresPuesto(NUM_PUESTOS_NORTE,zona);
+        darExpositoresPuesto(NUM_PUESTOS_ORIENTE,zona);
+        darExpositoresPuesto(NUM_PUESTOS_SUR,zona);
+        darExpositoresPuesto(NUM_PUESTOS_OCCIDENTE,zona);
 
-        return "Respuesta 1";
+        return "zona";
     }
 
     /**
@@ -479,8 +483,11 @@ public class FeriaEmpresarial {
      * @return respuesta2
      */
     public String metodo2() {
+        darExpositoresPuesto(NUM_PUESTOS_NORTE,zona);
+        darExpositoresPuesto(NUM_PUESTOS_ORIENTE,zona);
+        darExpositoresPuesto(NUM_PUESTOS_SUR,zona);
+        darExpositoresPuesto(NUM_PUESTOS_OCCIDENTE,zona);
         int cupoTotal = 237;
-        int contador = 0;
         if(expositores < cupoTotal*0.6){
             return "El punto de equilibrio no se ha cumplido";
         }
@@ -488,6 +495,9 @@ public class FeriaEmpresarial {
         return "El punto de equilibrio se ha cumplido";
     }
     int expositores = 0;
+    int expositoresPuesto = 0;
+    String zona = "";
+
 
 
 
