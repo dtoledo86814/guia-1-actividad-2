@@ -445,7 +445,7 @@ public class FeriaEmpresarial {
     /**
      * cantidad de expositores que hay en un puesto
      */
-    private int darExpositoresPuesto(int numPuesto, String zona, int expositores){
+    private int darExpositoresPuesto(int numPuesto, String zona){
         //buscamos el puesto
         Puesto P = null;
         for (Puesto puesto : puestos){
@@ -459,7 +459,7 @@ public class FeriaEmpresarial {
         String nombreEmpresa = P.darNombreEmpresa();
         for (Empresa empresa: empresas) {
             if (empresa.darNombre().equals(nombreEmpresa)) {
-                expositores = empresa.darNumeroPersonasAsistentes();
+                expositores += empresa.darNumeroPersonasAsistentes();
                 return expositores;
             }
         }
@@ -479,18 +479,16 @@ public class FeriaEmpresarial {
      * @return respuesta2
      */
     public String metodo2() {
-        int expositores = 0;
         int cupoTotal = 237;
         int contador = 0;
-        for(darExpositoresPuesto(expositores) != 0){
-            expositores = darExpositoresPuesto(expositores);
-            contador+= expositores;
-        }
-        if(contador < cupoTotal*0.6){
+        if(expositores < cupoTotal*0.6){
             return "El punto de equilibrio no se ha cumplido";
         }
+
         return "El punto de equilibrio se ha cumplido";
     }
+    int expositores = 0;
+
 
 
 
