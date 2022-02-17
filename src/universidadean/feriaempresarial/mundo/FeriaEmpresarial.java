@@ -442,12 +442,35 @@ public class FeriaEmpresarial {
     // -----------------------------------------------------------------
     // Puntos de Extensión
     // -----------------------------------------------------------------
-
+    /**
+     * cantidad de expositores que hay en un puesto
+     */
+    private int darExpositoresPuesto(int numPuesto, String zona, int expositores){
+        //buscamos el puesto
+        Puesto P = null;
+        for (Puesto puesto : puestos){
+            if (puesto.darNumero() == numPuesto && puesto.darZona().equals(zona)){
+                P = puesto;
+            }
+        }
+        if (P == null || !P.estaOcupado()){
+            return 0;
+        }
+        String nombreEmpresa = P.darNombreEmpresa();
+        for (Empresa empresa: empresas) {
+            if (empresa.darNombre().equals(nombreEmpresa)) {
+                expositores = empresa.darNumeroPersonasAsistentes();
+                return expositores;
+            }
+        }
+        return 0;
+    }
     /**
      * Método para la extensión 1
      * @return respuesta1
      */
     public String metodo1() {
+
         return "Respuesta 1";
     }
 
@@ -456,7 +479,19 @@ public class FeriaEmpresarial {
      * @return respuesta2
      */
     public String metodo2() {
-        return "Respuesta 2";
+        int expositores = 0;
+        int cupoTotal = 237;
+        int contador = 0;
+        for(darExpositoresPuesto(expositores) != 0){
+            expositores = darExpositoresPuesto(expositores);
+            contador+= expositores;
+        }
+        if(contador < cupoTotal*0.6){
+            return "El punto de equilibrio no se ha cumplido";
+        }
+        return "El punto de equilibrio se ha cumplido";
     }
+
+
 
 }
